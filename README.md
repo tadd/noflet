@@ -1,8 +1,10 @@
-= noflet - Local function decoration =
+# noflet - Local function decoration
 
-{{{noflet}}} is dynamic, local, advice for Emacs-Lisp code.
+[![CI](https://github.com/elp-revive/noflet/actions/workflows/test.yml/badge.svg)](https://github.com/elp-revive/noflet/actions/workflows/test.yml)
 
-{{{noflet}}} also has an Emacs indentation function for {{{flet}}}
+`noflet` is dynamic, local, advice for Emacs-Lisp code.
+
+`noflet` also has an Emacs indentation function for `flet`
 like macros.
 
 It's great for test code when you need to mock another function.
@@ -13,7 +15,7 @@ function through a different name.
 
 Use it like this:
 
-{{{
+```elisp
 (noflet ((find-file-noselect (file-name)
            (if (string-match-p "^#.*" file-name)
                (this-fn "/tmp/mytest")
@@ -24,22 +26,21 @@ Use it like this:
                                (substring file-name 1)))
                (funcall this-fn file-name thing))))
   (expand-file-name "#/thing"))
-}}}
+```
 
 This specifies that two functions should be overridden:
 
-* {{{find-file-noselect}}} is changed so that if the file-name begins with {{{#}}} a different file-name altogether is opened
-* {{{expand-file-name}}} is changed so that if the file-name begins with {{{#}}} it's resolved via {{{/tmp}}}
+* `find-file-noselect` is changed so that if the file-name begins with `#` a different file-name altogether is opened
+* `expand-file-name` is changed so that if the file-name begins with `#` it's resolved via {{{/tmp}}}
 
 In both cases {{{this-fn}}} is used to access the original function
 definition of these common Emacs functions.
 
 === Decorating results ===
 
-{{{noflet}}} can also be used to decorate results, just like
-{{{around-advice}}}:
+`noflet` can also be used to decorate results, just like `around-advice`:
 
-{{{
+```elisp
 (noflet ((find-file (file-name &optional wildcards)
            (let ((result (funcall this-fn file-name wildcards)))
               (with-current-buffer result
@@ -47,13 +48,13 @@ definition of these common Emacs functions.
               result)))
     (with-current-buffer (find-file "~/some-file")
       (message "buffer local var is: %s" some-buffer-local)))
-}}}
+```
 
-This overrides {{{find-file}}} to set a local variable. There are
+This overrides `find-file` to set a local variable. There are
 surely better ways to do it than this but it illustrates the point.
 
 
 === Lexical version ===
 
 Because we include a good indenting function we also include a lexical
-{{{flet}}}. It's just a wrapper for {{{cl-flet}}}.
+`flet`. It's just a wrapper for `cl-flet`.
