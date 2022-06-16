@@ -2,6 +2,9 @@
          "0.0.15"
          "locally override functions")
 
+(website-url "https://github.com/elp-revive/noflet")
+(keywords "lisp")
+
 (package-file "buffer-move.el")
 
 (source "melpa")
