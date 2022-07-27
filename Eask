@@ -5,7 +5,7 @@
 (website-url "https://github.com/elp-revive/noflet")
 (keywords "lisp")
 
-(package-file "buffer-move.el")
+(package-file "noflet.el")
 
 (source "melpa")
 
