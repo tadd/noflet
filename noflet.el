@@ -161,12 +161,14 @@ maintainers refuse to add the correct indentation spec to
   `(cl-flet ,bindings ,@body))
 
 (cl-defmacro letn (tag bindings &rest body)
+  "Not documented."
   (declare (debug (sexp sexp &rest form))
            (indent 2))
   `(cl-labels ((,tag ,(-map 'car bindings) ,@body))
      (,tag ,@(-map 'cadr bindings))))
 
 (defun ntake-all (f source)
+  "Not documented."
   (letn take-all ((result nil)
                   (src source))
     (if src
@@ -174,7 +176,6 @@ maintainers refuse to add the correct indentation spec to
           (take-all (cons l result)
                     (nthcdr (+ 1 (length l)) src)))
       result)))
-
 
 (provide 'noflet)
 ;;; noflet.el ends here
