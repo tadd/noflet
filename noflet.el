@@ -3,8 +3,10 @@
 ;; Copyright (C) 2013  Nic Ferrier
 
 ;; Author: Nic Ferrier <nferrier@ferrier.me.uk>
+;; Maintainer: Shen, Jen-Chieh <jcs090218@gmail.com>
 ;; Keywords: lisp
 ;; Version: 0.0.15
+;; Package-Requires: ((emacs "26.1") (dash "2.18"))
 ;; Url: https://github.com/elp-revive/noflet
 
 ;; This program is free software; you can redistribute it and/or modify
